@@ -1,0 +1,31 @@
+body{
+
+    background: #c9d6ff;
+    background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/14179/clouds.png');
+    background-repeat: repeat-x;
+    background-size: 100% 100%;
+    animation: move-body 20s linear infinite;
+
+  
+
+}
+@keyframes move-body {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 100% 0;
+  }
+}
+
+.weatherbox{
+    width: 700px;
+    padding: 20px;
+    border-radius: 20px;
+   border: 1px solid #ccc;
+      margin-top: 70px;
+
+
+    box-shadow: 10px 10px 10px 10px rgba(13, 129, 218, 0.5);
+
+  }

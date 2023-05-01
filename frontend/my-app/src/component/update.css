@@ -1,0 +1,25 @@
+.editButton{
+    display: flex;
+    margin-top: 50px;
+
+}
+.organisationcard{
+    /* height: 600px; */
+    /* padding: 100px; */
+    padding-left: 150px;
+}
+.img{
+ margin-left: 150px;
+   /* margin-top: ; */
+   display: flex;
+   flex-direction: column; 
+   justify-content: space-between;
+}
+.org{
+    margin-top: 0px;
+}
+
+.passwordcard{
+    /* height: 50%; */
+    padding: 100px;
+}

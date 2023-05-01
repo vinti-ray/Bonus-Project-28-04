@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import { Form, Button, Container,Card } from "react-bootstrap";
+import axios from "axios";
+import "./iti.css"
 
 const NewItineraryForm = () => {
   const [destination, setDestination] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
-  const [activities, setActivities] = useState([]);
-  const [accommodations, setAccommodations] = useState([]);
+  const [activities, setActivities] = useState("");
+  const [accommodations, setAccommodations] = useState("");
 
   const handleDestinationChange = (e) => {
     setDestination(e.target.value);
@@ -20,44 +22,31 @@ const NewItineraryForm = () => {
     setEndDate(e.target.value);
   };
 
-  const handleAddActivity = (activity) => {
-    setActivities([...activities, activity]);
-  };
-
-  const handleRemoveActivity = (index) => {
-    const newActivities = [...activities];
-    newActivities.splice(index, 1);
-    setActivities(newActivities);
-  };
-
-  const handleAddAccommodation = (accommodation) => {
-    setAccommodations([...accommodations, accommodation]);
-  };
-
-  const handleRemoveAccommodation = (index) => {
-    const newAccommodations = [...accommodations];
-    newAccommodations.splice(index, 1);
-    setAccommodations(newAccommodations);
-  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Call API endpoint to create new itinerary in database
-  };
-  const handleActivityChange = (e, index) => {
-    e.preventDefault();
-    //
+   let data={
+    destination:destination,
+    startDate:startDate,
+    endDate:endDate,
+   activity:activities,
+     accomodation:accommodations
+
+   }
+   console.log(data)
+   axios.post("http://localhost:3006/createiti",data).then((e)=>alert("data uploaded successfully"))
   };
 
-  const handleAccommodationChange = (e, index) => {
-    e.preventDefault();
-    //
-  };
 
   return (
-    <Container className="container">
-        <Card>
-    <Form onSubmit={handleSubmit} >
+    <div>
+<div
+        style={{ display: "flex", justifyContent: "center" }}
+        className="wethbox"
+      >
+        <Card className="weatherbox">
+          <Card.Body>
+        <Form  onSubmit={handleSubmit} >
       <Form.Group controlId="formDestination">
         <Form.Label>Destination</Form.Label>
         <Form.Control
@@ -87,59 +76,40 @@ const NewItineraryForm = () => {
           onChange={handleEndDateChange}
         />
       </Form.Group>
-
-<Form.Group controlId="formActivities">
-        <Form.Label>Activities</Form.Label>
-        {activities.map((activity, index) => (
-          <div key={index}>
-            <Form.Control
-              type="text"
-              placeholder="Enter activity"
-              value={activity}
-              onChange={(e) => handleActivityChange(e, index)}
-            />
-            <Button
-              variant="danger"
-              onClick={() => handleRemoveActivity(index)}
-            >
-              Remove
-            </Button>
-          </div>
-        ))}
-        <Button variant="success" onClick={() => handleAddActivity("")}>
-          Add Activity
-        </Button>
+      <Form.Group controlId="formEndDate">
+        <Form.Label>Activity</Form.Label>
+        <Form.Control
+     as="textarea"
+//   rows={4}
+          placeholder="Enter activity"
+          value={activities}
+          onChange={(e)=>setActivities(e.target.value)}
+        />
+      </Form.Group>
+      <Form.Group controlId="formEndDate">
+        <Form.Label>Accommodation</Form.Label>
+        <Form.Control
+    as="textarea"
+        //   rows={4}
+          placeholder="Enter accomodation"
+          value={accommodations}
+          onChange={(e)=>setAccommodations(e.target.value)}
+        />
       </Form.Group>
 
-      <Form.Group controlId="formAccommodations">
-        <Form.Label>Accommodations</Form.Label>
-        {accommodations.map((accommodation, index) => (
-          <div key={index}>
-            <Form.Control
-              type="text"
-              placeholder="Enter accommodation"
-              value={accommodation}
-              onChange={(e) => handleAccommodationChange(e, index)}
-            />
-            <Button
-              variant="danger"
-              onClick={() => handleRemoveAccommodation(index)}
-            >
-              Remove
-            </Button>
-          </div>
-        ))}
-        <Button variant="success" onClick={() => handleAddAccommodation("")}>
-          Add Accommodation
-        </Button>
-      </Form.Group> 
 
-      <Button variant="primary" type="submit">
+      <Button style={{
+
+          margin: "20px 10px 20px 250px",
+        }} variant="primary" type="submit">
         Create Itinerary
       </Button>
     </Form>
+    </Card.Body>
     </Card>
-    </Container>
+    </div>
+
+    </div>
   );
 };
 
