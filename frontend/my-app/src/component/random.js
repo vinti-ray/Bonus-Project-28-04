@@ -43,10 +43,8 @@ function Itinerary() {
                 </Card.Text>
                 <Card.Text>Activity: {book.activity}</Card.Text>
                 <Card.Text>Accomodation: {book.accomodation}</Card.Text>
-                <Button variant="primary" href={"/id"} onClick= {localStorage.setItem("id",book._id)}>
-                  update
-                </Button>
-                <Button variant="outline-danger" href={"/user"} onClick= {localStorage.setItem("id",book._id)}>
+
+                <Button variant="primary" href={"/user"} onClick= {localStorage.setItem("id",book._id)}>
                   Add
                 </Button>
               </Card.Body>
